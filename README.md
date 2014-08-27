@@ -1,3 +1,10 @@
+hxzon:
+
+src/main zk-openlayers 组件源码。
+
+src/test/java ,src/test/webapp 应用示例。
+
+=========
 #This project aims to integrate [OpenLayers](http://openlayers.org/) into [ZK](http://www.zkoss.org/) framework
 
 ##How to install ZK Openlayers project

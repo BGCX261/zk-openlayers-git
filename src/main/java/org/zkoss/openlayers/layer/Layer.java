@@ -16,6 +16,9 @@ Copyright (C) 2012 Potix Corporation. All Rights Reserved.
 */
 package org.zkoss.openlayers.layer;
 
+import static org.zkoss.openlayers.util.Helper.mergeMap;
+import static org.zkoss.openlayers.util.Helper.pair;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,49 +26,54 @@ import org.zkoss.openlayers.OLWidget;
 import org.zkoss.openlayers.base.Projection;
 import org.zkoss.openlayers.util.Function;
 
-import static org.zkoss.openlayers.util.Helper.mergeMap;
-import static org.zkoss.openlayers.util.Helper.pair;
 /**
  * @author jumperchen
  *
  */
+//地图图层
 public abstract class Layer extends OLWidget implements Cloneable {
-	private String _name;
-	protected Map _options;
-	public Layer(String name, Map options) {
-		_name = name;
-		_options = options;
-	}
-	protected Map getOptions() {
-		return _options;
-	}
-	public String getName() {
-		return _name;
-	}
-	public void addOptions(Map options, boolean reinitialize) {
-		clientUpdate("addOptions", new Object[] {options, reinitialize});
-	}
-	public Projection getProjection() {
-		return null;
-	}
+    private String _name;
+    protected Map _options;
 
-	protected Function newNativeObject() {
-		return new Function(getNativeClass(), getName(), mergeMap(getOptions(), pair("uuid",
-				getUuid())));
-	}
-	
-	public Object clone() {
-		Layer clone = null;
-		try {
-			clone = (Layer)super.clone();
-		} catch (CloneNotSupportedException e) {
-			throw new InternalError();
-		}
-		if (clone._options != null) {
-			clone._options = new HashMap(_options);
-		}
-		clone._map = null;
-		return clone;
-	}
+    public Layer(String name, Map options) {
+        _name = name;
+        _options = options;
+    }
+
+    protected Map getOptions() {
+        return _options;
+    }
+
+    public String getName() {
+        return _name;
+    }
+
+    public void addOptions(Map options, boolean reinitialize) {
+        clientUpdate("addOptions", new Object[] { options, reinitialize });
+    }
+
+    public Projection getProjection() {
+        return null;
+    }
+
+    @Override
+    protected Function newNativeObject() {
+        return new Function(getNativeClass(), getName(), mergeMap(getOptions(), pair("uuid", getUuid())));
+    }
+
+    @Override
+    public Object clone() {
+        Layer clone = null;
+        try {
+            clone = (Layer) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new InternalError();
+        }
+        if (clone._options != null) {
+            clone._options = new HashMap(_options);
+        }
+        clone._map = null;
+        return clone;
+    }
 
 }

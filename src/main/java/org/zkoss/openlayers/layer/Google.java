@@ -25,32 +25,34 @@ import org.zkoss.json.JSONAware;
  * 
  */
 public class Google extends Layer {
-	public enum Type implements JSONAware {
-		NORMAL, PHYSICAL, HYBRID, SATELLITE;
-		@Override
-		public String toJSONString() {
-			switch (this) {
-			case NORMAL:
-				return "G_NORMAL_MAP";
-			case PHYSICAL:
-				return "G_PHYSICAL_MAP";
-			case HYBRID:
-				return "G_HYBRID_MAP";
-			case SATELLITE:
-				return "G_SATELLITE_MAP";
-			}
-			return "";
-		}
-	}
-	public Google(Map options) {
-		super(null, options);
-	}
-	public Google(String name, Map options) {
-		super(name, options);
-	}
+    public enum Type implements JSONAware {
+        NORMAL, PHYSICAL, HYBRID, SATELLITE;
+        @Override
+        public String toJSONString() {
+            switch (this) {
+            case NORMAL:
+                return "G_NORMAL_MAP";
+            case PHYSICAL:
+                return "G_PHYSICAL_MAP";
+            case HYBRID:
+                return "G_HYBRID_MAP";
+            case SATELLITE:
+                return "G_SATELLITE_MAP";
+            }
+            return "";
+        }
+    }
 
-	@Override
-	protected String getNativeClass() {
-		return "OpenLayers.Layer.Google";
-	}
+    public Google(Map options) {
+        super(null, options);
+    }
+
+    public Google(String name, Map options) {
+        super(name, options);
+    }
+
+    @Override
+    protected String getNativeClass() {
+        return "OpenLayers.Layer.Google";
+    }
 }

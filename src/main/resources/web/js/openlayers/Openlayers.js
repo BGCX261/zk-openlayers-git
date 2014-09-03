@@ -17,19 +17,19 @@ it will be useful, but WITHOUT ANY WARRANTY.
 OpenLayers.ImgPath = zk.ajaxURI('/web/js/openlayers/ext/img/', {au:true});
 
 // global cache
-openlayers._binds = {};
+openlayers._binds = {};//openlayers是zk部件包，在wpd中导入了openlayers
 
-openlayers.Openlayers = zk.$extends(zul.Widget, {
+openlayers.Openlayers = zk.$extends(zul.Widget, {//zk部件的实例方法
 	$init: function () {
 		this.$supers('$init', arguments);
 		this._layers = [];
 		this._controls = [];
 		this._popups = [];
 	},
-	$define: {
+	$define: {//定义属性的便捷方式（getter和setter方法）
 		layer: function () {
 			this._layers.push(this._layer);
-			if (this.map) {
+			if (this.map) {//this.map 是 openlayers 中的地图
 				this.map.addLayer(this._layer);
 				this.redrawLayer();
 			}
@@ -119,7 +119,7 @@ openlayers.Openlayers = zk.$extends(zul.Widget, {
 		this.$supers(openlayers.Openlayers,'bind_', arguments);
 		var options = this._options || {};
 		options.theme = null;
-		this.map = new OpenLayers.Map(this.uuid, options);
+		this.map = new OpenLayers.Map(this.uuid, options);//openlayers地图，不是本文件的 openlayers.Openlayers 部件。
 		var layers, controls;
 		if (layers = this._layers) {
 			this.map.addLayers(layers);

@@ -24,30 +24,31 @@ import java.util.Map;
  *
  */
 public class Helper {
-	@SuppressWarnings("unchecked")
-	public static Map toMap(Object[]... pairs) {
-		Map map = new HashMap();
-		for (Object[] pair : pairs) {
-			map.put(pair[0], pair[1]);
-		}
-		return map;
-	}
-	public static Object[] pair(String key, Object value) {
-		return new Object[]{key, value};
-	}
-	
-	/**
-	 * Merges the map with the new value and returns a new map.
-	 */
-	@SuppressWarnings("unchecked")
-	public static Map mergeMap(Map map, Object[]... pairs) {
-		if (map == null) {
-			map = new HashMap();
-		}
-		Map newMap = new HashMap(map);
-		for (Object[] pair : pairs) {
-			newMap.put(pair[0], pair[1]);
-		}
-		return newMap;
-	}
+    @SuppressWarnings("unchecked")
+    public static Map toMap(Object[]... pairs) {
+        Map map = new HashMap();
+        for (Object[] pair : pairs) {
+            map.put(pair[0], pair[1]);
+        }
+        return map;
+    }
+
+    public static Object[] pair(String key, Object value) {
+        return new Object[] { key, value };
+    }
+
+    /**
+     * Merges the map with the new value and returns a new map.
+     */
+    @SuppressWarnings("unchecked")
+    public static Map mergeMap(Map map, Object[]... pairs) {
+        if (map == null) {
+            map = new HashMap();
+        }
+        Map newMap = new HashMap(map);
+        for (Object[] pair : pairs) {
+            newMap.put(pair[0], pair[1]);
+        }
+        return newMap;
+    }
 }

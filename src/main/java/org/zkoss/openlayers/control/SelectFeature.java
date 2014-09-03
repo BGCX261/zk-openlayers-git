@@ -29,27 +29,28 @@ import org.zkoss.openlayers.util.Function;
  * 
  */
 public class SelectFeature extends Control {
-	private Layer _layer;
-	
-	public SelectFeature(Layer layer) {
-		this(layer, null);
-	}
+    private Layer _layer;
 
-	public SelectFeature(Layer layer, Map options) {
-		super(options);
-		_layer = layer;
-	}
+    public SelectFeature(Layer layer) {
+        this(layer, null);
+    }
 
-	@Override
-	protected String getNativeClass() {
-		return "OpenLayers.Control.SelectFeature";
-	}
+    public SelectFeature(Layer layer, Map options) {
+        super(options);
+        _layer = layer;
+    }
 
-	@Override
-	protected Function newNativeObject() {
-		return new Function(getNativeClass(),
-				_layer != null ? _layer.toClientWidget() : null, mergeMap(
-						getOptions(), pair("uuid", getUuid())));
-	}
+    @Override
+    protected String getNativeClass() {
+        return "OpenLayers.Control.SelectFeature";
+    }
+
+    @Override
+    protected Function newNativeObject() {
+        return new Function(getNativeClass(), //
+                _layer != null ? _layer.toClientWidget() : null, //
+                mergeMap(getOptions(), //
+                        pair("uuid", getUuid())));
+    }
 
 }
